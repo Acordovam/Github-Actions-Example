@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de CI/CD y GitHub Actions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+
+        header {
+            background: #24292e;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #0366d6;
+            border-bottom: 2px solid #0366d6;
+            padding-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #24292e;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .code-box {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .highlight {
+            color: #a6e22e;
+        }
+
+        /* Green for YAML keys */
+        .string {
+            color: #e6db74;
+        }
+
+        /* Yellow for values */
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Automatización con CI/CD</h1>
+    </header>
+
+    <section>
+        <h2>¿Qué es CI/CD?</h2>
+        <p>La Integración Continua (CI) y la Entrega Continua (CD) representan un cambio cultural y técnico en el
+            desarrollo de software moderno.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Enfoque Principal</th>
+                    <th>Resultado Típico</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Integración Continua (CI)</strong></td>
+                    <td>Fusión frecuente de código en un repositorio compartido.</td>
+                    <td>Ejecución de pruebas automáticas y validación de builds.</td>
+                </tr>
+                <tr>
+                    <td><strong>Entrega Continua (CD)</strong></td>
+                    <td>Asegurar que el código esté siempre en un estado desplegable.</td>
+                    <td>Artefactos listos para producción tras pasar CI.</td>
+                </tr>
+                <tr>
+                    <td><strong>Despliegue Continuo (CD)</strong></td>
+                    <td>Automatización total hasta el entorno de producción.</td>
+                    <td>Cambios visibles para el usuario final sin intervención manual.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Componentes de GitHub Actions</h2>
+        <p>GitHub Actions permite automatizar flujos de trabajo directamente desde tu repositorio de GitHub.</p>
+
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Componente</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Workflow</strong></td>
+                    <td>Proceso automatizado configurable (archivo .yml).</td>
+                </tr>
+                <tr>
+                    <td><strong>Events</strong></td>
+                    <td>Actividades que disparan el flujo (push, pull_request, schedule).</td>
+                </tr>
+                <tr>
+                    <td><strong>Jobs</strong></td>
+                    <td>Conjunto de pasos que se ejecutan en el mismo corredor (runner).</td>
+                </tr>
+                <tr>
+                    <td><strong>Steps</strong></td>
+                    <td>Tareas individuales como ejecutar comandos o usar una "Action".</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Ejemplo de Configuración (.yml)</h2>
+        <p>Este archivo debe ubicarse en <code>.github/workflows/main.yml</code> para activarse automáticamente.</p>
+        <div class="code-box">
+            <pre>
+<span class="highlight">name:</span> <span class="string">Node.js CI</span>
+
+<span class="highlight">on:</span>
+  <span class="highlight">push:</span>
+    <span class="highlight">branches:</span> [ <span class="string">"main"</span> ]
+
+<span class="highlight">jobs:</span>
+  <span class="highlight">build:</span>
+    <span class="highlight">runs-on:</span> <span class="string">ubuntu-latest</span>
+    <span class="highlight">steps:</span>
+      - <span class="highlight">uses:</span> <span class="string">actions/checkout@v4</span>
+      - <span class="highlight">name:</span> <span class="string">Install dependencies</span>
+        <span class="highlight">run:</span> <span class="string">npm install</span>
+      - <span class="highlight">name:</span> <span class="string">Run tests</span>
+        <span class="highlight">run:</span> <span class="string">npm test</span>
+        </pre>
+        </div>
+    </section>
+
+</body>
+
+</html>
