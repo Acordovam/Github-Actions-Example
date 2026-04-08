@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [master] # 1. Se cambió 'branch' por 'branches' y se usa 'main'
+    branches: [master] 
 
 permissions:
   contents: write
