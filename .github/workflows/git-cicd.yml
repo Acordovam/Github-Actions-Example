@@ -1,26 +1,17 @@
-name: Node.js CI
-
+name: Desplegar en Github Pages
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+    branches: [master]
+permissions: 
+  contents: write
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-
+  build-and-deploy:
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Deploy Github Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          node-version: '20'
-
-      - name: Instalar dependencias
-        run: npm ci
-
-      - name: Ejecutar tests
-        run: npm test
+          folder: .
+          branch: gh-pages
